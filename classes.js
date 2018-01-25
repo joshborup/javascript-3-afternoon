@@ -166,6 +166,7 @@ class ProgressiveManager {
 
 //Code Here
 
+
 class Machine {
   constructor(){
     this.widgets_made_count = 0;
@@ -176,7 +177,7 @@ class Machine {
   makeWidgets(num){
     this.widgets_made_count += num;
     let count = Math.floor(this.widgets_made_count / 50);
-    this.wear_and_tear_count += count;
+    this.wear_and_tear_count = count;
   }
 
   fixMachine(){
@@ -184,10 +185,11 @@ class Machine {
   }
 
   reboot(){
-    return function (){
-      this.wear_and_tear_count = this.wear_and_tear_count + 10;
-      this.needs_reboot = false;
+    this.wear_and_tear_count -= 10;
+    this.needs_reboot = false;
+    return function doneRebooting(){
     }
+    
     
   }
 
